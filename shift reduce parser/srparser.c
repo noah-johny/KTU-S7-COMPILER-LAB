@@ -27,7 +27,7 @@ void reduce()
             stack[z + 1] = '\0';
             stack[z + 2] = '\0';
             printf("\n$%s\t%s$\t%s", stack, input, action);
-            i = i - 2;
+            i -= 2;
         }
     }
 
@@ -39,7 +39,7 @@ void reduce()
             stack[z + 1] = '\0';
             stack[z + 1] = '\0';
             printf("\n$%s\t%s$\t%s", stack, input, action);
-            i = i - 2;
+            i -= 2;
         }
     }
 
@@ -51,7 +51,7 @@ void reduce()
             stack[z + 1] = '\0';
             stack[z + 2] = '\0';
             printf("\n$%s\t%s$\t%s", stack, input, action);
-            i = i - 2;
+            i -= 2;
         }
     }
 }
