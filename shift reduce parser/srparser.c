@@ -1,55 +1,55 @@
 #include <stdio.h>
 #include <string.h>
 
-int k = 0, z = 0, i = 0, j = 0, size = 0;
+int i = 0, j = 0, k = 0, size = 0;
 char input[30], stack[30], action[30];
 
 void reduce()
 {
     strcpy(action, "REDUCE");
 
-    for (z = 0; z < size; z++)
+    for (k = 0; k < size; k++)
     {
-        if (stack[z] == 'i' && stack[z + 1] == 'd')
+        if (stack[k] == 'i' && stack[k + 1] == 'd')
         {
-            stack[z] = 'E';
-            stack[z + 1] = '\0';
+            stack[k] = 'E';
+            stack[k + 1] = '\0';
             printf("\n$%s\t%s$\t%s", stack, input, action);
             j++;
         }
     }
 
-    for (z = 0; z < size; z++)
+    for (k = 0; k < size; k++)
     {
-        if (stack[z] == 'E' && stack[z + 1] == '+' && stack[z + 2] == 'E')
+        if (stack[k] == 'E' && stack[k + 1] == '+' && stack[k + 2] == 'E')
         {
-            stack[z] = 'E';
-            stack[z + 1] = '\0';
-            stack[z + 2] = '\0';
+            stack[k] = 'E';
+            stack[k + 1] = '\0';
+            stack[k + 2] = '\0';
             printf("\n$%s\t%s$\t%s", stack, input, action);
             i -= 2;
         }
     }
 
-    for (z = 0; z < size; z++)
+    for (k = 0; k < size; k++)
     {
-        if (stack[z] == 'E' && stack[z + 1] == '*' && stack[z + 2] == 'E')
+        if (stack[k] == 'E' && stack[k + 1] == '*' && stack[k + 2] == 'E')
         {
-            stack[z] = 'E';
-            stack[z + 1] = '\0';
-            stack[z + 1] = '\0';
+            stack[k] = 'E';
+            stack[k + 1] = '\0';
+            stack[k + 1] = '\0';
             printf("\n$%s\t%s$\t%s", stack, input, action);
             i -= 2;
         }
     }
 
-    for (z = 0; z < size; z++)
+    for (k = 0; k < size; k++)
     {
-        if (stack[z] == '(' && stack[z + 1] == 'E' && stack[z + 2] == ')')
+        if (stack[k] == '(' && stack[k + 1] == 'E' && stack[k + 2] == ')')
         {
-            stack[z] = 'E';
-            stack[z + 1] = '\0';
-            stack[z + 2] = '\0';
+            stack[k] = 'E';
+            stack[k + 1] = '\0';
+            stack[k + 2] = '\0';
             printf("\n$%s\t%s$\t%s", stack, input, action);
             i -= 2;
         }
@@ -58,7 +58,7 @@ void reduce()
 
 void shift()
 {
-    for (i = 0, j = 0, k = 0; j < size; i++, j++, k++)
+    for (i = 0, j = 0; j < size; i++, j++)
     {
         strcpy(action, "SHIFT");
 
@@ -85,6 +85,7 @@ void display()
 {
     printf("\nSTACK \t INPUT\t\tACTION");
     shift();
+    reduce();
 }
 
 void main()
