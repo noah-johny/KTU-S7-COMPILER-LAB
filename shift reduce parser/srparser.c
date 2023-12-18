@@ -58,7 +58,7 @@ void reduce()
 
 void shift()
 {
-    for (k = 0, i = 0; j < size; k++, i++, j++)
+    for (i = 0, j = 0, k = 0; j < size; i++, j++, k++)
     {
         strcpy(action, "SHIFT");
 
