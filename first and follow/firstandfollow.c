@@ -51,13 +51,11 @@ void follow(char item)
 
 void display()
 {
-    for (int i = 0; i < k; i++)
-    {
-        if (i == k - 1)
-            printf("%c}\n", f[i]);
-        else
-            printf("%c,", f[i]);
-    }
+    int i;
+    for (i = 0; i < k - 1; i++)
+        printf("%c,", f[i]);
+    printf("%c}\n", f[i]);
+
     k = 0;
     strcpy(f, "");
 }
