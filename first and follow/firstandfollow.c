@@ -19,7 +19,7 @@ void first(char item)
     {
         if (p[i][0] == item)
         {
-            if (p[i][2] == '$')
+            if (p[i][2] == '#')
                 follow(p[i][0]);
             else if (islower(p[i][2]))
                 f[k++] = p[i][2];
@@ -67,7 +67,7 @@ void main()
 
     printf("\nEnter the number of productions: ");
     scanf("%d", &n);
-    printf("\nEnter the productions:\n");
+    printf("\nEnter the productions:\n[Format: LHS=RHS, use '#' for Epsilon]\n");
     for (int i = 0; i < n; i++)
         scanf("%s", p[i]);
 
