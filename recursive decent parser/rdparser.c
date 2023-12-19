@@ -3,7 +3,7 @@
 #include <ctype.h>
 
 char s[20];
-int p = 0;
+int cursor = 0;
 
 void E();
 void EDash();
@@ -20,16 +20,16 @@ void E()
 
 void EDash()
 {
-    if (s[p] == '+')
+    if (s[cursor] == '+')
     {
         printf("Applying rule: E' -> +TE'\n");
-        p++;
+        cursor++;
         T();
         EDash();
     }
     else
     {
-        printf("Applying rule: E' -> e\n");
+        printf("Applying rule: E' -> #\n");
         return;
     }
 }
@@ -43,41 +43,41 @@ void T()
 
 void TDash()
 {
-    if (s[p] == '*')
+    if (s[cursor] == '*')
     {
         printf("Applying rule: T' -> *FT'\n");
-        p++;
+        cursor++;
         F();
         TDash();
     }
     else
     {
-        printf("Applying rule: T' -> e\n");
+        printf("Applying rule: T' -> #\n");
         return;
     }
 }
 
 void F()
 {
-    if (s[p] == '(')
+    if (s[cursor] == '(')
     {
         printf("Applying rule: F -> (E)\n");
-        p++;
+        cursor++;
         E();
-        if (s[p] == ')')
-            p++;
+        if (s[cursor] == ')')
+            cursor++;
         else
         {
             printf("\nParsing error: Missing closing parenthesis.\n\n");
             exit(0);
         }
     }
-    else if (isalpha(s[p]))
+    else if (isalpha(s[cursor]))
     {
         printf("Applying rule: F -> id\n");
-        p++;
-        while (isalnum(s[p]) || s[p] == '_')
-            p++;
+        cursor++;
+        while (isalnum(s[cursor]))
+            cursor++;
     }
     else
     {
@@ -90,11 +90,11 @@ void main()
 {
     printf("\nEnter the string to be parsed: ");
     scanf("%s", s);
-    printf("\n");
+    printf("\n['#' denotes Epsilon]\n\n");
 
     E();
 
-    if (s[p] == '\0')
+    if (s[cursor] == '\0')
         printf("\nSuccessfully parsed.\n\n");
     else
         printf("\nParsing error: Unparsed characters remaining!\n\n");
