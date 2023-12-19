@@ -12,9 +12,9 @@ After removing left recursion::
 
 ```
 E -> TE'
-E' -> +TE' | e
+E' -> +TE' | #
 T -> FT'
-T' -> *FT' | e
+T' -> *FT' | #
 F -> (E)
 F -> id
 ```
